@@ -14,7 +14,6 @@
     ]
   ],
   "_from": "bitbucket-cmd@latest",
-  "_id": "bitbucket-cmd@0.0.1",
   "_inCache": true,
   "_installable": true,
   "_location": "/bitbucket-cmd",
@@ -39,10 +38,7 @@
   ],
   "_spec": "bitbucket-cmd",
   "_where": "",
-  "author": {
-    "name": "Dan Shumaker",
-    "email": "danpshumaker@gmail.com"
-  },
+  "author": "Dan Shumaker <danpshumaker@gmail.com>",
   "bin": {
     "bitbucket": "./bin/bitbucket.js"
   },
@@ -73,7 +69,16 @@
   ],
   "name": "bitbucket-cmd",
   "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
   "scripts": {},
-  "version": "0.5.4"
+  "version": "0.1.0",
+  "main": "bitbucket",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danshumaker/bitbucket-cmd.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danshumaker/bitbucket-cmd/issues"
+  },
+  "homepage": "https://github.com/danshumaker/bitbucket-cmd#readme"
 }
