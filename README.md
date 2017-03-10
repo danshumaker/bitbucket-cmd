@@ -99,3 +99,4 @@ Checkout ```~/.bitbucket/config.json``` for more options.
 
 ### TODO
   * --diff and --decline are not working properly.
+  * Allow config to handle multiple repos
