@@ -53,6 +53,7 @@ Each command have individual usage help (using --help or -h)
 For example the pr command has these options
 
     -l, --list                  List Open Pull Requests
+    -r, --merged                List Merged Pull Requests
     -m, --merge <pr_num>        Merge Pull Request
     -c, --create <title>        Create Pull Request
     -s, --source <branch name>  Source Branch
