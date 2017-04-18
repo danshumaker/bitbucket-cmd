@@ -25,6 +25,7 @@ requirejs([
         .command('pr')
         .description('Operate on Pull Requests')
         .option('-l, --list', 'List Open Pull Requests')
+        .option('-r, --merged', 'List Merged Pull Requests')
         .option('-m, --merge <pr_num>', 'Merge Pull Request', String)
         .option('-c, --create <title>', 'Create Pull Request', String)
         .option('-s, --source <branch name>', 'Source Branch', String)
