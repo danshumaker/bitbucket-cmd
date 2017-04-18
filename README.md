@@ -34,6 +34,7 @@ Then, in your shell type:
     Information stored!
 
 This saves your credentials (base64 encoded) in your `$HOME/.bitbucket` folder.
+This config behavior was used from the jira-cmd repo listed above.
 
 ##### Help
 
