@@ -1,9 +1,6 @@
 bitbucket-cmd
 ========
 
-  Dan Shumaker @ Phase2 Technology
-  2016-11-18
-  
   Bitbucket command line interface  based on https://github.com/germanrcuriel/jira-cmd
 
   Currently it is able to do these things from the command line: 
