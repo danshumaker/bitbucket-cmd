@@ -86,7 +86,7 @@ Please note the password is tokenized and hashed for you.   So when prompted for
 just paste or type it in, and the bitbucket-cmd will tokenize it for you. That means what 
 is stored in config.json is NOT what you typed in,  just fyi.
 
-#beware-of-the-json-death-by-brackets-syntax
+Beware-of-the-json-death-by-brackets-syntax: Nested objects are a bitch - not much I can do about that. 
 
 ##### Help
 
