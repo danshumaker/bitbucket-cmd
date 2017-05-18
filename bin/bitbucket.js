@@ -28,6 +28,7 @@ requirejs([
         .option('-r, --merged', 'List Merged Pull Requests')
         .option('-m, --merge <pr_num>', 'Merge Pull Request', String)
         .option('-c, --create <title>', 'Create Pull Request', String)
+        .option('-d, --description <description>', 'Description of PR to create', String)
         .option('-s, --source <branch name>', 'Source Branch', String)
         .option('-t, --to <branch name>', 'Destination Branch', String)
         .option('-f, --diff <pr_num>', 'Diff Pull Request', String)

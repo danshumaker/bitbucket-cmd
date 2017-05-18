@@ -33,6 +33,61 @@ Then, in your shell type:
 This saves your credentials (base64 encoded) in your `$HOME/.bitbucket` folder.
 This config behavior was used from the jira-cmd repo listed above.
 
+#### Reviewers
+
+Please note that the "default_reviewers" section is added to the config.json file.  I've added check to see if this section is empty and just submit PR's without reviewers if necessary.  However it is sensitive.  Valid default reviewer syntax is as follows:
+
+```
+{
+  "auth": {
+    "url": "https://api.bitbucket.org/2.0/repositories/blabla/myawesomerepo/",
+    "user": "yourbbusername",
+    "token": "yourpasswordthatistokenizedforyou"
+  },
+  "options": {
+    "default_reviewers": [
+    { "username" : "yourbestbud" }
+    ]
+  }
+}
+
+```
+
+or an empty options section like this:
+```
+{
+  "auth": {
+    "url": "https://api.bitbucket.org/2.0/repositories/blabla/myawesomerepo/",
+    "user": "yourbbusername",
+    "token": "yourpasswordthatistokenizedforyou"
+  },
+  "options": { }
+}
+
+```
+or a list of reviewers like this:
+```
+{
+  "auth": {
+    "url": "https://api.bitbucket.org/2.0/repositories/blabla/myawesomerepo/",
+    "user": "yourbbusername",
+    "token": "yourpasswordthatistokenizedforyou"
+  },
+  "options": {
+    "default_reviewers": [
+    { "bestreviewer1" ,"bestusername-reviewer2", "bestreviewername3" }
+    ]
+  }
+}
+```
+
+Your reviewers are setup in the bitbucket settings section on the bitbucket admin page of the repo.
+Please note the password is tokenized and hashed for you.   So when prompted for the password
+just paste or type it in, and the bitbucket-cmd will tokenize it for you. That means what 
+is stored in config.json is NOT what you typed in,  just fyi.
+
+#beware-of-the-json-death-by-brackets-syntax
+
 ##### Help
 
 Usage: bitbucket [options] [command]
@@ -46,7 +101,7 @@ Usage: bitbucket [options] [command]
     -h, --help     output usage information
     -V, --version  output the version number
 
-Each command have individual usage help (using --help or -h)
+Each command have individual usage help (using --help or -h), so `bitbucket pr -h` will give pr specific help. 
 
 For example the pr command has these options
 
@@ -54,6 +109,7 @@ For example the pr command has these options
     -r, --merged                List Merged Pull Requests
     -m, --merge <pr_num>        Merge Pull Request
     -c, --create <title>        Create Pull Request
+    -d, --description <description>   Description for PR 
     -s, --source <branch name>  Source Branch
     -t, --to <branch name>      Destination Branch
     -f, --diff <pr_num>         Diff Pull Request
