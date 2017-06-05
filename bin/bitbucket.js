@@ -19,7 +19,7 @@ requirejs([
 ], function (program, config, auth, pr) {
 
     program
-        .version('v0.0.1');
+        .version('v0.2.1');
 
     program
         .command('pr')

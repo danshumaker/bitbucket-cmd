@@ -25,12 +25,21 @@ Then, in your shell type:
 ##### First use
 
     $ bitbucket
-    bitbucket URL: https://bitbucket.org/
+ 
+ It will prompte you for the repositories subdirectory url.  It auto-supplies the proper bitbucket api URL prefix
+
+    Repository subdir URL: https://api.bitbucket.org/2.0/repositories/
+
+<Type in your repo name here> (for example `phase2tech/bla_dev_vm`) and then hit return a couple times for the username prompt
+
     Username: xxxxxx
     Password: xxxxxx
+
+Once you hit enter after the password then you should get this message:
+
     Information stored!
 
-This saves your credentials (base64 encoded) in your `$HOME/.bitbucket` folder.
+This saves your credentials (base64 encoded) in the current directory in a subdirectory `.bitbucket` folder. Named config.json
 This config behavior was used from the jira-cmd repo listed above.
 
 #### Reviewers
@@ -154,4 +163,5 @@ Checkout ```~/.bitbucket/config.json``` for more options.
 
 ### TODO
   * --diff and --decline are not working properly.
-  * Allow config to handle multiple repos
+  * Allow config to handle multiple repos - currently this is done by creating a subdirectory in the current directory but ideally I'd like to have
+	* a -cf cli option for the location of the config.json file.
