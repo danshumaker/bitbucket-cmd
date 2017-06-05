@@ -39,7 +39,7 @@ Once you hit enter after the password then you should get this message:
 
     Information stored!
 
-This saves your credentials (base64 encoded) in the (current directory):https://github.com/danshumaker/bitbucket-cmd/pull/2 in a subdirectory `.bitbucket` folder. Named config.json
+This saves your credentials (base64 encoded) in the [current directory](https://github.com/danshumaker/bitbucket-cmd/pull/2) in a subdirectory `.bitbucket` folder. Named config.json
 This config behavior was used from the jira-cmd repo listed above.
 
 #### Reviewers
