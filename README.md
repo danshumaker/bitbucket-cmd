@@ -26,11 +26,11 @@ Then, in your shell type:
 
     $ bitbucket
  
- It will prompte you for the repositories subdirectory url.  It auto-supplies the proper bitbucket api URL prefix
+It will prompte you for the repositories subdirectory url.  It auto-supplies the proper bitbucket api URL prefix
 
     Repository subdir URL: https://api.bitbucket.org/2.0/repositories/
 
-<Type in your repo name here> (for example `phase2tech/bla_dev_vm`) and then hit return a couple times for the username prompt
+Type in your repo name here (for example `phase2tech/bla_dev_vm`) and then hit return a couple times for the username prompt
 
     Username: xxxxxx
     Password: xxxxxx
@@ -39,7 +39,7 @@ Once you hit enter after the password then you should get this message:
 
     Information stored!
 
-This saves your credentials (base64 encoded) in the current directory in a subdirectory `.bitbucket` folder. Named config.json
+This saves your credentials (base64 encoded) in the (current directory):https://github.com/danshumaker/bitbucket-cmd/pull/2 in a subdirectory `.bitbucket` folder. Named config.json
 This config behavior was used from the jira-cmd repo listed above.
 
 #### Reviewers
