@@ -1,4 +1,4 @@
-bitbucket-cmd
+[bitbucket-cmd](https://www.npmjs.com/package/bitbucket-cmd)
 ========
 
   Bitbucket command line interface  based on https://github.com/germanrcuriel/jira-cmd
