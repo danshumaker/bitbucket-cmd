@@ -27,11 +27,14 @@ requirejs([
         .option('-l, --list', 'List Open Pull Requests')
         .option('-r, --merged', 'List Merged Pull Requests')
         .option('-m, --merge <pr_num>', 'Merge Pull Request', String)
+        .option('-M, --message <pr_num>', 'Message for merge/something else', String)
         .option('-c, --create <title>', 'Create Pull Request', String)
         .option('-d, --description <description>', 'Description of PR to create', String)
         .option('-s, --source <branch name>', 'Source Branch', String)
         .option('-t, --to <branch name>', 'Destination Branch', String)
         .option('-f, --diff <pr_num>', 'Diff Pull Request', String)
+        .option('-p, --patch <pr_num>', 'Patch Pull Request', String)
+        .option('-a, --activity <pr_num>', 'Activity on Pull Request', String)
         .option('-d, --decline <pr_num>', 'Decline Pull Request', String)
         .action(function (options) {
             auth.setConfig(function (auth) {
@@ -45,6 +48,19 @@ requirejs([
                     if (options.decline) {
                         pr.decline(options);
                     }
+                  if (options.diff) {
+                        pr.diff(options);
+                    }
+                  if (options.patch) {
+                        pr.patch(options);
+                    }
+                  if (options.activity) {
+                        pr.activity(options);
+                    }
+                  //this is still not working
+                  // if(options.merge && options.message){
+                  //   pr.merge(options);
+                  // }
                 }
             });
         });
