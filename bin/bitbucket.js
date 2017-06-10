@@ -15,10 +15,10 @@ requirejs.config({
 });
 
 requirejs([
-        'commander',
-        '../lib/config',
-        '../lib/auth',
-        '../lib/bitbucket/pr',
+    'commander',
+    '../lib/config',
+    '../lib/auth',
+    '../lib/bitbucket/pr',
 ], function (program, config, auth, pr) {
 
     program
@@ -53,21 +53,21 @@ requirejs([
                     if (options.decline) {
                         pr.decline(options);
                     }
-                  if (options.diff) {
+                    if (options.diff) {
                         pr.diff(options);
                     }
-                  if (options.patch) {
+                    if (options.patch) {
                         pr.patch(options);
                     }
-                  if (options.activity) {
+                    if (options.activity) {
                         pr.activity(options);
                     }
-                  if (options.approve) {
+                    if (options.approve) {
                         pr.approve(options);
                     }
-                  if(options.merge && options.message){
-                    pr.merge(options);
-                  }
+                    if (options.merge) {
+                        pr.merge(options);
+                    }
                 }
             });
         });
@@ -76,8 +76,8 @@ requirejs([
         .command('config')
         .description('Change configuration')
         .option('-c, --clear', 'Clear stored configuration')
-        .option('-a, --auth', 'List auth settings') 
-        .option('-u, --url', 'List url') 
+        .option('-a, --auth', 'List auth settings')
+        .option('-u, --url', 'List url')
         .action(function (options) {
             if (options.clear) {
                 auth.clearConfig();
@@ -105,14 +105,14 @@ requirejs([
             console.log();
         });
 
-program.parse(process.argv);
+    program.parse(process.argv);
 
-if (program.args.length === 0) {
-    auth.setConfig(function (auth) {
-        if (auth) {
-            program.help();
-        }
-    });
-}
+    if (program.args.length === 0) {
+        auth.setConfig(function (auth) {
+            if (auth) {
+                program.help();
+            }
+        });
+    }
 
 });

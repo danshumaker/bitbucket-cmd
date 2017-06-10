@@ -1,7 +1,29 @@
 {
-  "_args": [
-    [
-      {
+    "_args": [
+        [{
+                "raw": "bitbucket-cmd",
+                "scope": null,
+                "escapedName": "bitbucket-cmd",
+                "name": "bitbucket-cmd",
+                "rawSpec": "",
+                "spec": "latest",
+                "type": "tag"
+            },
+            ""
+        ]
+    ],
+    "_from": "bitbucket-cmd@latest",
+    "_inCache": true,
+    "_installable": true,
+    "_location": "/bitbucket-cmd",
+    "_nodeVersion": "6.2.2",
+    "_npmUser": {
+        "name": "danshumaker",
+        "email": "danpshumaker@gmail.com"
+    },
+    "_npmVersion": "3.9.5",
+    "_phantomChildren": {},
+    "_requested": {
         "raw": "bitbucket-cmd",
         "scope": null,
         "escapedName": "bitbucket-cmd",
@@ -9,75 +31,53 @@
         "rawSpec": "",
         "spec": "latest",
         "type": "tag"
-      },
-      ""
-    ]
-  ],
-  "_from": "bitbucket-cmd@latest",
-  "_inCache": true,
-  "_installable": true,
-  "_location": "/bitbucket-cmd",
-  "_nodeVersion": "6.2.2",
-  "_npmUser": {
-    "name": "danshumaker",
-    "email": "danpshumaker@gmail.com"
-  },
-  "_npmVersion": "3.9.5",
-  "_phantomChildren": {},
-  "_requested": {
-    "raw": "bitbucket-cmd",
-    "scope": null,
-    "escapedName": "bitbucket-cmd",
+    },
+    "_requiredBy": [
+        "#USER"
+    ],
+    "_spec": "bitbucket-cmd",
+    "_where": "",
+    "author": "Dan Shumaker <danpshumaker@gmail.com>",
+    "bin": {
+        "bitbucket": "./bin/bitbucket.js"
+    },
+    "dependencies": {
+        "cheerio": "^0.22.0",
+        "cli-table": "~0.2.0",
+        "commander": "~1.1.1",
+        "moment": "^2.10.2",
+        "openurl": "^1.1.0",
+        "request": "^2.76.0",
+        "requirejs": "~2.1.5",
+        "simple-git": "^1.73.0",
+        "superagent": "~0.13.0"
+    },
+    "description": "Bitbucket Command Line Interface",
+    "devDependencies": {},
+    "directories": {},
+    "engines": {
+        "node": ">= 0.8"
+    },
+    "keywords": [
+        "bitbucket",
+        "api",
+        "client",
+        "command",
+        "cli",
+        "tool"
+    ],
     "name": "bitbucket-cmd",
-    "rawSpec": "",
-    "spec": "latest",
-    "type": "tag"
-  },
-  "_requiredBy": [
-    "#USER"
-  ],
-  "_spec": "bitbucket-cmd",
-  "_where": "",
-  "author": "Dan Shumaker <danpshumaker@gmail.com>",
-  "bin": {
-    "bitbucket": "./bin/bitbucket.js"
-  },
-  "dependencies": {
-    "cheerio": "^0.22.0",
-    "cli-table": "~0.2.0",
-    "commander": "~1.1.1",
-    "moment": "^2.10.2",
-    "openurl": "^1.1.0",
-    "request": "^2.76.0",
-    "requirejs": "~2.1.5",
-    "superagent": "~0.13.0"
-  },
-  "description": "Bitbucket Command Line Interface",
-  "devDependencies": {},
-  "directories": {},
-  "engines": {
-    "node": ">= 0.8"
-  },
-  "keywords": [
-    "bitbucket",
-    "api",
-    "client",
-    "command",
-    "cli",
-    "tool"
-  ],
-  "name": "bitbucket-cmd",
-  "optionalDependencies": {},
-  "scripts": {},
-  "version": "0.3.0",
-  "main": "bitbucket",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/danshumaker/bitbucket-cmd.git"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/danshumaker/bitbucket-cmd/issues"
-  },
-  "homepage": "https://github.com/danshumaker/bitbucket-cmd#readme"
+    "optionalDependencies": {},
+    "scripts": {},
+    "version": "0.3.0",
+    "main": "bitbucket",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/danshumaker/bitbucket-cmd.git"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/danshumaker/bitbucket-cmd/issues"
+    },
+    "homepage": "https://github.com/danshumaker/bitbucket-cmd#readme"
 }
