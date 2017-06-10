@@ -5,6 +5,9 @@
 // Documentation: https://developer.atlassian.com/bitbucket/api/2/reference/
 //  https://api.bitbucket.org/2.0/repositories/i4cdev/voyce-member-site/pullrequests/2283?fields=-links,destination.branch.name
 
+/**
+ * ping the reviewers whenever a diff request is created
+ * */
 var requirejs = require('requirejs');
 
 requirejs.config({
@@ -27,6 +30,7 @@ requirejs([
         .option('-l, --list', 'List Open Pull Requests')
         .option('-r, --merged', 'List Merged Pull Requests')
         .option('-m, --merge <pr_num>', 'Merge Pull Request', String)
+        .option('-S, --merge_strategy <Strategy>', 'Merging Strategy for Pull Requests (merge_commit/squash)', String)
         .option('-M, --message <pr_num>', 'Message for merge/something else', String)
         .option('-c, --create <title>', 'Create Pull Request', String)
         .option('-d, --description <description>', 'Description of PR to create', String)
@@ -35,6 +39,7 @@ requirejs([
         .option('-f, --diff <pr_num>', 'Diff Pull Request', String)
         .option('-p, --patch <pr_num>', 'Patch Pull Request', String)
         .option('-a, --activity <pr_num>', 'Activity on Pull Request', String)
+        .option('-A, --approve <pr_num>', 'Approve the  Pull Request', String)
         .option('-d, --decline <pr_num>', 'Decline Pull Request', String)
         .action(function (options) {
             auth.setConfig(function (auth) {
@@ -57,10 +62,12 @@ requirejs([
                   if (options.activity) {
                         pr.activity(options);
                     }
-                  //this is still not working
-                  // if(options.merge && options.message){
-                  //   pr.merge(options);
-                  // }
+                  if (options.approve) {
+                        pr.approve(options);
+                    }
+                  if(options.merge && options.message){
+                    pr.merge(options);
+                  }
                 }
             });
         });
