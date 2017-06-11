@@ -223,7 +223,10 @@ To create a pull request you could do it like this:
 
 ```
 bitbucket pr -c "test pr" 
+```
+
   * it will create a push the current branch to origin and create a pull request with current branch as source and master as destination branch
+```
 bitbucket pr -c "test pr" -s feature/MTIE-503-Package-Content -t master
 ```
 
