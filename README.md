@@ -181,21 +181,21 @@ For example the pr command has these options
 
   Options:
 
+
     -h, --help                       output usage information
     -l, --list                       List Open Pull Requests
     -r, --merged                     List Merged Pull Requests
     -m, --merge <pr_num>             Merge Pull Request
     -S, --merge_strategy <Strategy>  Merging Strategy for Pull Requests (merge_commit/squash)
-    -M, --message <pr_num>           Message for merge/something else
+    -M, --message <pr_num>           Message for merge/creating PR
     -c, --create <title>             Create Pull Request
-    -d, --description <description>  Description of PR to create
     -s, --source <branch name>       Source Branch
     -t, --to <branch name>           Destination Branch
-    -f, --diff <pr_num>              Diff Pull Request
+    -d, --diff <pr_num>              Diff Pull Request
     -p, --patch <pr_num>             Patch Pull Request
     -a, --activity <pr_num>          Activity on Pull Request
     -A, --approve <pr_num>           Approve the  Pull Request
-    -d, --decline <pr_num>           Decline Pull Request
+    -D, --decline <pr_num>           Decline Pull Request
 
 ```
 Usage:
@@ -204,17 +204,10 @@ bitbucket pr -l
 
 The above command will output something like this:
 ```
+ ID  Author              Source                   Destination  Title                                              State  Reviewers                           Url                                                               
 
- ID    Author        Source                             Destination     Title                                               State  Reviewers    
-
- 3126  wdranvaud     MTIC-1038-map-alpha-sort           release/1.6.16  MTIC-1038 views exposed filter alphabetical sor...  OPEN                
- 3125  wdranvaud     MTIC-1038-map-alpha-sort           develop         MTIC-1038 views exposed filter alphabetical sor...  OPEN   ezeedub      
- 3120  wdranvaud     MTIC-925-flag-button-fix           release/1.6.16  MTIC-925 fix CSS on marketplace flag as inappro...  OPEN                
- 3114  wdranvaud     MTIC-1044-audition-center-sidebar  release/1.6.16  MTIC-1044 display Audition Central on sidebar       OPEN                
- 3107  wdranvaud     MTIC-894-question-title-reversed   release/1.6.16  MTIC-894 place title above body of question         OPEN                
- 3082  wdranvaud     MTIC-1067-default-publish-locale   release/1.6.16  MTIC-1067 display translated content by default...  OPEN                
- 2968  ryan_smylski  feature/MTIE-471--echeck           release/2.0.0   [MTIE-471] - Rounded out xpresspay for e-check ...  OPEN   dan_shumaker 
- 3066  ezeedub       feature/MTIE-471--echeck           ecommdevelop    [MTIE-471]  Rounded out xpresspay for e-check p...  OPEN                
+ 8   palash-paytm        test_branch              master       MC trimming before checking for approval           OPEN                                       https://bitbucket.org/teamname/repo-name/pull-requests/8 
+               
 ```
 
 Usage:
@@ -231,17 +224,35 @@ To create a pull request you could do it like this:
 bitbucket pr -c "test pr" -s feature/MTIE-503-Package-Content -t master
 ```
 
-It will create a pull request and output something like this:
+  It will create a pull request and output something like given below. you can click the url to open the pull request in browser.
 ```
-Create Pull Request
-Created PR @ https://api.bitbucket.org/2.0/repositories/phase2tech/mti_cms/pullrequests/3127
+	Created PR @ https://bitbucket.org/teamname/repo-name/pull-requests/8
 ```
 
+* to approve a pull request with pull request id 8
+```
+bitbucket pr -A 8
+```
+
+* to decline a pull request with pull request id 8
+```
+bitbucket pr -D 8
+```
+
+* to view the diff present in the pull request, all you have to do is given below. And it will print the diff on the screen.
+```
+bitbucket pr -d 8
+```
+
+* to view the comment activity done on the pull request. 
+```
+bitbucket pr -a 8
+	* and it will show the comments made by the users
+```
 
 ##### Advanced options
-Checkout ```~/.bitbucket/config.json``` for more options.
+Checkout ```~/.bitbucketconfigrc``` for more options.
 
 ### TODO
-  * --diff and --decline are not working properly.
-  * Allow config to handle multiple repos - currently this is done by creating a subdirectory in the current directory but ideally I'd like to have
-	* a -cf cli option for the location of the config.json file.
+	* showing diff more gracefully
+	* allowing to patch the
