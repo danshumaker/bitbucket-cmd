@@ -5,8 +5,13 @@
 
   Currently it is able to do these things from the command line: 
   * Store your encrypted bitbucket credentials
-  * List pull requests
-  * Create pull requets
+  * pull requests
+	* Create pull requets
+	* List all pull requests
+	* Approve pull request
+	* Merge pull request
+	* Decline pull request
+	* Show all activity in a pull request	
 
 ## Motivation
 
@@ -18,7 +23,7 @@ Install [node.js](http://nodejs.org/).
 
 Then, in your shell type:
 
-    $ npm install -g bitbucket-cmd
+	$ npm install -g bitbucket-cmd
 
 ## Usage
 
@@ -28,7 +33,9 @@ Then, in your shell type:
  
 It will prompte you for the repositories subdirectory url.  It auto-supplies the proper bitbucket api URL prefix
 
-    Repository subdir URL: https://api.bitbucket.org/2.0/repositories/
+    Team subdir URL: https://api.bitbucket.org/2.0/repositories/+
+  * now enter the teamname for Eg. phase2tech
+  * repo name is automatically picked from current working directory
 
 Type in your repo name here (for example `phase2tech/bla_dev_vm`) and then hit return a couple times for the username prompt
 
@@ -39,61 +46,116 @@ Once you hit enter after the password then you should get this message:
 
     Information stored!
 
-This saves your credentials (base64 encoded) in the [current directory](https://github.com/danshumaker/bitbucket-cmd/pull/2) in a subdirectory `.bitbucket` folder. Named config.json
-This config behavior was used from the jira-cmd repo listed above.
+This saves your credentials in the [home directory](https://github.com/danshumaker/bitbucket-cmd/pull/2) in a config rc `~/.bitbucketconfigrc` file.
 
 #### Reviewers
 
-Please note that the "default_reviewers" section is added to the config.json file.  I've added check to see if this section is empty and just submit PR's without reviewers if necessary.  However it is sensitive.  Valid default reviewer syntax is as follows:
+Please note that the "reviewers" section is added to the config file.  I've added check to see if this section is empty and just submit PR's without reviewers if necessary.  However it is sensitive.  Valid default reviewer syntax is as follows:
 
 ```
 {
-  "auth": {
-    "url": "https://api.bitbucket.org/2.0/repositories/blabla/myawesomerepo/",
-    "user": "yourbbusername",
-    "token": "yourpasswordthatistokenizedforyou"
+"default": {
+    "auth": {
+      "url": "https://api.bitbucket.org/2.0/repositories/",
+      "user": "palash-paytm",
+      "token": "palash-paytm:CLIENT_SECRET_KEY_YOU_ENTERED",
+      "team": "paytmteam",
+      "repo_name": "repo-name"
+    },
+    "reviewers": [
+      		   {
+		    "username": "rohit-prajapati-paytm"
+		   }
+      ]
   },
-  "options": {
-    "default_reviewers": [
-    { "username" : "yourbestbud" }
-    ]
+  "repo_level": {
+    "/home/palashkulshreshtha/Documents/programs/mygit/repo-name": {
+      "reviewers": [
+      		   {
+		    "username": "rohit-prajapati-paytm"
+		   }
+      ],
+      "auth": {
+        "url": "https://api.bitbucket.org/2.0/repositories/",
+        "user": "palash-paytm",
+        "token": "palash-paytm:CLIENT_SECRET_KEY_YOU_ENTERED",
+        "team": "paytmteam",
+        "repo_name": "merchant-payout"
+      }
+    }
   }
 }
-
 ```
 
 or an empty options section like this:
 ```
 {
-  "auth": {
-    "url": "https://api.bitbucket.org/2.0/repositories/blabla/myawesomerepo/",
-    "user": "yourbbusername",
-    "token": "yourpasswordthatistokenizedforyou"
+"default": {
+    "auth": {
+      "url": "https://api.bitbucket.org/2.0/repositories/",
+      "user": "palash-paytm",
+      "token": "palash-paytm:CLIENT_SECRET_KEY_YOU_ENTERED",
+      "team": "paytmteam",
+      "repo_name": "repo-name"
+    },
+    "reviewers": []
   },
-  "options": { }
+  "repo_level": {
+    "/home/palashkulshreshtha/Documents/programs/mygit/repo-name": {
+      "reviewers": [],
+      "auth": {
+        "url": "https://api.bitbucket.org/2.0/repositories/",
+        "user": "palash-paytm",
+        "token": "palash-paytm:CLIENT_SECRET_KEY_YOU_ENTERED",
+        "team": "paytmteam",
+        "repo_name": "merchant-payout"
+      }
+    }
+  }
 }
 
 ```
 or a list of reviewers like this:
 ```
 {
-  "auth": {
-    "url": "https://api.bitbucket.org/2.0/repositories/blabla/myawesomerepo/",
-    "user": "yourbbusername",
-    "token": "yourpasswordthatistokenizedforyou"
+"default": {
+    "auth": {
+      "url": "https://api.bitbucket.org/2.0/repositories/",
+      "user": "palash-paytm",
+      "token": "palash-paytm:CLIENT_SECRET_KEY_YOU_ENTERED",
+      "team": "paytmteam",
+      "repo_name": "repo-name"
+    },
+    "reviewers": [
+      		   {
+		    "username": "rohit-prajapati-paytm"
+		   },
+		   {
+		    "username": "dheerajbatra-paytm"
+		   }
+      ]
   },
-  "options": {
-    "default_reviewers": [
-    { "bestreviewer1" ,"bestusername-reviewer2", "bestreviewername3" }
-    ]
+  "repo_level": {
+    "/home/palashkulshreshtha/Documents/programs/mygit/repo-name": {
+      "reviewers": [
+      		   {
+		    "username": "rohit-prajapati-paytm"
+		   },{
+		    "username": "dheerajbatra-paytm"
+		   }
+      ],
+      "auth": {
+        "url": "https://api.bitbucket.org/2.0/repositories/",
+        "user": "palash-paytm",
+        "token": "palash-paytm:CLIENT_SECRET_KEY_YOU_ENTERED",
+        "team": "paytmteam",
+        "repo_name": "merchant-payout"
+      }
+    }
   }
 }
-```
 
-Your reviewers are setup in the bitbucket settings section on the bitbucket admin page of the repo.
-Please note the password is tokenized and hashed for you.   So when prompted for the password
-just paste or type it in, and the bitbucket-cmd will tokenize it for you. That means what 
-is stored in config.json is NOT what you typed in,  just fyi.
+```
 
 Beware-of-the-json-death-by-brackets-syntax: Nested objects are a bitch - not much I can do about that. 
 
@@ -114,16 +176,28 @@ Each command have individual usage help (using --help or -h), so `bitbucket pr -
 
 For example the pr command has these options
 
-    -l, --list                  List Open Pull Requests
-    -r, --merged                List Merged Pull Requests
-    -m, --merge <pr_num>        Merge Pull Request
-    -c, --create <title>        Create Pull Request
-    -d, --description <description>   Description for PR 
-    -s, --source <branch name>  Source Branch
-    -t, --to <branch name>      Destination Branch
-    -f, --diff <pr_num>         Diff Pull Request
-    -d, --decline <pr_num>      Decline Pull Request
+```
+  Usage: pr [options]
 
+  Options:
+
+    -h, --help                       output usage information
+    -l, --list                       List Open Pull Requests
+    -r, --merged                     List Merged Pull Requests
+    -m, --merge <pr_num>             Merge Pull Request
+    -S, --merge_strategy <Strategy>  Merging Strategy for Pull Requests (merge_commit/squash)
+    -M, --message <pr_num>           Message for merge/something else
+    -c, --create <title>             Create Pull Request
+    -d, --description <description>  Description of PR to create
+    -s, --source <branch name>       Source Branch
+    -t, --to <branch name>           Destination Branch
+    -f, --diff <pr_num>              Diff Pull Request
+    -p, --patch <pr_num>             Patch Pull Request
+    -a, --activity <pr_num>          Activity on Pull Request
+    -A, --approve <pr_num>           Approve the  Pull Request
+    -d, --decline <pr_num>           Decline Pull Request
+
+```
 Usage:
 
 bitbucket pr -l
@@ -148,6 +222,8 @@ Usage:
 To create a pull request you could do it like this:
 
 ```
+bitbucket pr -c "test pr" 
+  * it will create a push the current branch to origin and create a pull request with current branch as source and master as destination branch
 bitbucket pr -c "test pr" -s feature/MTIE-503-Package-Content -t master
 ```
 
