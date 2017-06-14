@@ -49,6 +49,7 @@
     "commander": "~1.1.1",
     "moment": "^2.10.2",
     "openurl": "^1.1.0",
+    "rc": "^1.2.1",
     "request": "^2.76.0",
     "requirejs": "~2.1.5",
     "simple-git": "^1.73.0",
