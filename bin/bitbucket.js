@@ -27,7 +27,8 @@ requirejs([
     program
         .command('pr')
         .description('Operate on Pull Requests')
-        .option('-l, --list', 'List Open Pull Requests')
+        .option('-l, --list', 'List only my Open Pull Requests')
+        .option('-L, --listall', 'List all Open Pull Requests')
         .option('-r, --merged', 'List Merged Pull Requests')
         .option('-m, --merge <pr_num>', 'Merge Pull Request', String)
         .option('-S, --merge_strategy <Strategy>', 'Merging Strategy for Pull Requests (merge_commit/squash)', String)
@@ -40,10 +41,14 @@ requirejs([
         .option('-a, --activity <pr_num>', 'Activity on Pull Request', String)
         .option('-A, --approve <pr_num>', 'Approve the  Pull Request', String)
         .option('-D, --decline <pr_num>', 'Decline Pull Request', String)
+        .option('-o, --open <pr_num>', 'Open Pull Request in browser', String)
         .action(function (options) {
             auth.setConfig(function (auth) {
                 if (auth) {
                     if (options.list) {
+                        pr.list(options);
+                    }
+                    if (options.listall) {
                         pr.list(options);
                     }
                     if (options.create) {
@@ -66,6 +71,9 @@ requirejs([
                     }
                     if (options.merge) {
                         pr.merge(options);
+                    }
+                    if (options.open) {
+                        pr.open(options);
                     }
                 }
             });

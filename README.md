@@ -48,7 +48,7 @@ Once you hit enter after the password then you should get this message:
 
 This saves your credentials in the [home directory](https://github.com/danshumaker/bitbucket-cmd/pull/2) in a config rc `~/.bitbucketconfigrc` file.
 
-#### Reviewers
+#### Reviewers [Change the reviewers in the ~/.bitbucketconfigrc file]
 
 Please note that the "reviewers" section is added to the config file.  I've added check to see if this section is empty and just submit PR's without reviewers if necessary.  However it is sensitive.  Valid default reviewer syntax is as follows:
 
