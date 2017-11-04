@@ -5,6 +5,9 @@
 // Documentation: https://developer.atlassian.com/bitbucket/api/2/reference/
 //  https://api.bitbucket.org/2.0/repositories/i4cdev/voyce-member-site/pullrequests/2283?fields=-links,destination.branch.name
 
+/**
+ * ping the reviewers whenever a diff request is created
+ * */
 var requirejs = require('requirejs');
 
 requirejs.config({
@@ -12,10 +15,10 @@ requirejs.config({
 });
 
 requirejs([
-        'commander',
-        '../lib/config',
-        '../lib/auth',
-        '../lib/bitbucket/pr',
+    'commander',
+    '../lib/config',
+    '../lib/auth',
+    '../lib/bitbucket/pr',
 ], function (program, config, auth, pr) {
 
     program
@@ -24,19 +27,28 @@ requirejs([
     program
         .command('pr')
         .description('Operate on Pull Requests')
-        .option('-l, --list', 'List Open Pull Requests')
+        .option('-l, --list', 'List only my Open Pull Requests')
+        .option('-L, --listall', 'List all Open Pull Requests')
         .option('-r, --merged', 'List Merged Pull Requests')
         .option('-m, --merge <pr_num>', 'Merge Pull Request', String)
+        .option('-S, --merge_strategy <Strategy>', 'Merging Strategy for Pull Requests (merge_commit/squash)', String)
+        .option('-M, --message <pr_num>', 'Message for merge/creating PR', String)
         .option('-c, --create <title>', 'Create Pull Request', String)
-        .option('-d, --description <description>', 'Description of PR to create', String)
         .option('-s, --source <branch name>', 'Source Branch', String)
         .option('-t, --to <branch name>', 'Destination Branch', String)
-        .option('-f, --diff <pr_num>', 'Diff Pull Request', String)
-        .option('-d, --decline <pr_num>', 'Decline Pull Request', String)
+        .option('-d, --diff <pr_num>', 'Diff Pull Request', String)
+        .option('-p, --patch <pr_num>', 'Patch Pull Request', String)
+        .option('-a, --activity <pr_num>', 'Activity on Pull Request', String)
+        .option('-A, --approve <pr_num>', 'Approve the  Pull Request', String)
+        .option('-D, --decline <pr_num>', 'Decline Pull Request', String)
+        .option('-o, --open <pr_num>', 'Open Pull Request in browser', String)
         .action(function (options) {
             auth.setConfig(function (auth) {
                 if (auth) {
                     if (options.list) {
+                        pr.list(options);
+                    }
+                    if (options.listall) {
                         pr.list(options);
                     }
                     if (options.create) {
@@ -44,6 +56,24 @@ requirejs([
                     }
                     if (options.decline) {
                         pr.decline(options);
+                    }
+                    if (options.diff) {
+                        pr.diff(options);
+                    }
+                    if (options.patch) {
+                        pr.patch(options);
+                    }
+                    if (options.activity) {
+                        pr.activity(options);
+                    }
+                    if (options.approve) {
+                        pr.approve(options);
+                    }
+                    if (options.merge) {
+                        pr.merge(options);
+                    }
+                    if (options.open) {
+                        pr.open(options);
                     }
                 }
             });
@@ -53,8 +83,8 @@ requirejs([
         .command('config')
         .description('Change configuration')
         .option('-c, --clear', 'Clear stored configuration')
-        .option('-a, --auth', 'List auth settings') 
-        .option('-u, --url', 'List url') 
+        .option('-a, --auth', 'List auth settings')
+        .option('-u, --url', 'List url')
         .action(function (options) {
             if (options.clear) {
                 auth.clearConfig();
@@ -82,14 +112,14 @@ requirejs([
             console.log();
         });
 
-program.parse(process.argv);
+    program.parse(process.argv);
 
-if (program.args.length === 0) {
-    auth.setConfig(function (auth) {
-        if (auth) {
-            program.help();
-        }
-    });
-}
+    if (program.args.length === 0) {
+        auth.setConfig(function (auth) {
+            if (auth) {
+                program.help();
+            }
+        });
+    }
 
 });

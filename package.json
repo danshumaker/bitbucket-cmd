@@ -45,11 +45,14 @@
   "dependencies": {
     "cheerio": "^0.22.0",
     "cli-table": "~0.2.0",
+    "colors": "^1.1.2",
     "commander": "~1.1.1",
     "moment": "^2.10.2",
     "openurl": "^1.1.0",
+    "rc": "^1.2.1",
     "request": "^2.76.0",
     "requirejs": "~2.1.5",
+    "simple-git": "^1.73.0",
     "superagent": "~0.13.0"
   },
   "description": "Bitbucket Command Line Interface",
