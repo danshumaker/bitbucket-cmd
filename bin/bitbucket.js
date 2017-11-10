@@ -106,7 +106,7 @@ requirejs([
         }).on('--help', function () {
             console.log('  Config Help:');
             console.log();
-            console.log('    Bitbucket URL: https://api.bitbucket.org/2.0/repositories/YOURUSER/YOURREPONAME');
+            console.log('    Bitbucket URL: https://api.bitbucket.org/2.0/repositories/YOURTEAM/YOURREPONAME');
             console.log('    Username: user (for user@foo.bar)');
             console.log('    Password: Your password');
             console.log();
