@@ -3,7 +3,7 @@
 
   Bitbucket command line interface  based on https://github.com/germanrcuriel/jira-cmd
 
-  Currently it is able to do these things from the command line: 
+  Currently it is able to do these things from the command line:
   * Store your encrypted bitbucket credentials
   * List pull requests
   * Create pull requets
@@ -25,26 +25,29 @@ Then, in your shell type:
 ##### First use
 
     $ bitbucket
- 
-It will prompte you for the repositories subdirectory url.  It auto-supplies the proper bitbucket api URL prefix
+
+It will prompte you for the repositories **subdirectory** url.  IT AUTO-SUPPLIES THE PROPER BITBUCKET API URL PREFIX
 
     Repository subdir URL: https://api.bitbucket.org/2.0/repositories/
 
-Type in your repo name here (for example `phase2tech/bla_dev_vm`) and then hit return a couple times for the username prompt
+Type in your repo name here (for example `phase2tech/bla_dev_vm`) and then hit **return a couple times** and the username/password prompt will appear
 
     Username: xxxxxx
     Password: xxxxxx
+
+#### PLEASE note this password is an APP PASSword as described here: https://confluence.atlassian.com/bitbucket/app-passwords-828781300.html  and NOT your account password
 
 Once you hit enter after the password then you should get this message:
 
     Information stored!
 
-This saves your credentials (base64 encoded) in the [current directory](https://github.com/danshumaker/bitbucket-cmd/pull/2) in a subdirectory `.bitbucket` folder. Named config.json
-This config behavior was used from the jira-cmd repo listed above.
+This saves your credentials (base64 encoded) in the `~/.bitbucket` folder. Named config.json
+This config behavior was used from the jira-cmd repo listed above. However you can set a BITBUCKET_CONFIG environment variable
+to use a different directory (this allows for multiple sources of bitbucket repos).
 
 #### Reviewers
 
-Please note that the "default_reviewers" section is added to the config.json file.  I've added check to see if this section is empty and just submit PR's without reviewers if necessary.  However it is sensitive.  Valid default reviewer syntax is as follows:
+Please note that the "reviwers" section is added to the config.json file.  I've added check to see if this section is empty and just submit PR's without reviewers if necessary.  However it is sensitive.  Valid default reviewer syntax is as follows:
 
 ```
 {
@@ -53,49 +56,19 @@ Please note that the "default_reviewers" section is added to the config.json fil
     "user": "yourbbusername",
     "token": "yourpasswordthatistokenizedforyou"
   },
-  "options": {
-    "default_reviewers": [
+  "reviewers": [
     { "username" : "yourbestbud" }
     ]
-  }
 }
 
-```
-
-or an empty options section like this:
-```
-{
-  "auth": {
-    "url": "https://api.bitbucket.org/2.0/repositories/blabla/myawesomerepo/",
-    "user": "yourbbusername",
-    "token": "yourpasswordthatistokenizedforyou"
-  },
-  "options": { }
-}
-
-```
-or a list of reviewers like this:
-```
-{
-  "auth": {
-    "url": "https://api.bitbucket.org/2.0/repositories/blabla/myawesomerepo/",
-    "user": "yourbbusername",
-    "token": "yourpasswordthatistokenizedforyou"
-  },
-  "options": {
-    "default_reviewers": [
-    { "bestreviewer1" ,"bestusername-reviewer2", "bestreviewername3" }
-    ]
-  }
-}
 ```
 
 Your reviewers are setup in the bitbucket settings section on the bitbucket admin page of the repo.
 Please note the password is tokenized and hashed for you.   So when prompted for the password
-just paste or type it in, and the bitbucket-cmd will tokenize it for you. That means what 
+just paste or type it in, and the bitbucket-cmd will tokenize it for you. That means what
 is stored in config.json is NOT what you typed in,  just fyi.
 
-Beware-of-the-json-death-by-brackets-syntax: Nested objects are a bitch - not much I can do about that. 
+Beware-of-the-json-death-by-brackets-syntax: Nested objects are a bitch - not much I can do about that.
 
 ##### Help
 
@@ -103,14 +76,14 @@ Usage: bitbucket [options] [command]
 
   Commands:
 
-    pr 
+    pr
 
   Options:
 
     -h, --help     output usage information
     -V, --version  output the version number
 
-Each command have individual usage help (using --help or -h), so `bitbucket pr -h` will give pr specific help. 
+Each command have individual usage help (using --help or -h), so `bitbucket pr -h` will give pr specific help.
 
 For example the pr command has these options
 
@@ -118,7 +91,7 @@ For example the pr command has these options
     -r, --merged                List Merged Pull Requests
     -m, --merge <pr_num>        Merge Pull Request
     -c, --create <title>        Create Pull Request
-    -d, --description <description>   Description for PR 
+    -d, --description <description>   Description for PR
     -s, --source <branch name>  Source Branch
     -t, --to <branch name>      Destination Branch
     -f, --diff <pr_num>         Diff Pull Request
@@ -131,16 +104,16 @@ bitbucket pr -l
 The above command will output something like this:
 ```
 
- ID    Author        Source                             Destination     Title                                               State  Reviewers    
+ ID    Author        Source                             Destination     Title                                               State  Reviewers
 
- 3126  wdranvaud     MTIC-1038-map-alpha-sort           release/1.6.16  MTIC-1038 views exposed filter alphabetical sor...  OPEN                
- 3125  wdranvaud     MTIC-1038-map-alpha-sort           develop         MTIC-1038 views exposed filter alphabetical sor...  OPEN   ezeedub      
- 3120  wdranvaud     MTIC-925-flag-button-fix           release/1.6.16  MTIC-925 fix CSS on marketplace flag as inappro...  OPEN                
- 3114  wdranvaud     MTIC-1044-audition-center-sidebar  release/1.6.16  MTIC-1044 display Audition Central on sidebar       OPEN                
- 3107  wdranvaud     MTIC-894-question-title-reversed   release/1.6.16  MTIC-894 place title above body of question         OPEN                
- 3082  wdranvaud     MTIC-1067-default-publish-locale   release/1.6.16  MTIC-1067 display translated content by default...  OPEN                
- 2968  ryan_smylski  feature/MTIE-471--echeck           release/2.0.0   [MTIE-471] - Rounded out xpresspay for e-check ...  OPEN   dan_shumaker 
- 3066  ezeedub       feature/MTIE-471--echeck           ecommdevelop    [MTIE-471]  Rounded out xpresspay for e-check p...  OPEN                
+ 3126  wdranvaud     MTIC-1038-map-alpha-sort           release/1.6.16  MTIC-1038 views exposed filter alphabetical sor...  OPEN
+ 3125  wdranvaud     MTIC-1038-map-alpha-sort           develop         MTIC-1038 views exposed filter alphabetical sor...  OPEN   ezeedub
+ 3120  wdranvaud     MTIC-925-flag-button-fix           release/1.6.16  MTIC-925 fix CSS on marketplace flag as inappro...  OPEN
+ 3114  wdranvaud     MTIC-1044-audition-center-sidebar  release/1.6.16  MTIC-1044 display Audition Central on sidebar       OPEN
+ 3107  wdranvaud     MTIC-894-question-title-reversed   release/1.6.16  MTIC-894 place title above body of question         OPEN
+ 3082  wdranvaud     MTIC-1067-default-publish-locale   release/1.6.16  MTIC-1067 display translated content by default...  OPEN
+ 2968  ryan_smylski  feature/MTIE-471--echeck           release/2.0.0   [MTIE-471] - Rounded out xpresspay for e-check ...  OPEN   dan_shumaker
+ 3066  ezeedub       feature/MTIE-471--echeck           ecommdevelop    [MTIE-471]  Rounded out xpresspay for e-check p...  OPEN
 ```
 
 Usage:
@@ -157,11 +130,4 @@ Create Pull Request
 Created PR @ https://api.bitbucket.org/2.0/repositories/phase2tech/mti_cms/pullrequests/3127
 ```
 
-
-##### Advanced options
-Checkout ```~/.bitbucket/config.json``` for more options.
-
-### TODO
-  * --diff and --decline are not working properly.
-  * Allow config to handle multiple repos - currently this is done by creating a subdirectory in the current directory but ideally I'd like to have
-	* a -cf cli option for the location of the config.json file.
+I really hope you enjoy this tool!
