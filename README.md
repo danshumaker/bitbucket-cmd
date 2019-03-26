@@ -27,10 +27,11 @@ Then, in your shell type:
     $ bitbucket
 
 It will prompte you for the repositories **subdirectory** url.  IT AUTO-SUPPLIES THE PROPER BITBUCKET API URL PREFIX
+You type in your repo name (for example `phase2tech/bla_dev_vm`) and then hit **return a couple times**
 
     Repository subdir URL: https://api.bitbucket.org/2.0/repositories/
 
-Type in your repo name here (for example `phase2tech/bla_dev_vm`) and then hit **return a couple times** and the username/password prompt will appear
+then the username/password prompt should appear
 
     Username: xxxxxx
     Password: xxxxxx
@@ -41,9 +42,8 @@ Once you hit enter after the password then you should get this message:
 
     Information stored!
 
-This saves your credentials (base64 encoded) in the `~/.bitbucket` folder. Named config.json
-This config behavior was used from the jira-cmd repo listed above. However you can set a BITBUCKET_CONFIG environment variable
-to use a different directory (this allows for multiple sources of bitbucket repos).
+This saves your credentials (base64 encoded) in the `~/.bitbucket-cmd` folder. Named config.json
+You can set a BITBUCKET_CONFIG environment variable to use a different directory (this allows for multiple sources of bitbucket repos) than the default `current-working-direct/.bitbucket-cmd`.
 
 #### Reviewers
 
@@ -78,7 +78,7 @@ Usage: bitbucket [options] [command]
 
     pr
 
-  Options:
+  Sub-Options:
 
     -h, --help     output usage information
     -V, --version  output the version number
